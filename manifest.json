@@ -1,0 +1,17 @@
+{
+    "name": "Hotel de mentía Auto play",
+    "version": "1.0.0",
+    "description": "https://hoteldementia.io/visual-novels",
+    "author": "poringbom",
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["https://hoteldementia.io/novel*"],
+          "js": ["script.js"],
+          "run_at": "document_end"
+        }
+    ],
+    "manifest_version": 3
+}
