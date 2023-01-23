@@ -4,14 +4,14 @@
     "description": "https://hoteldementia.io/visual-novels",
     "author": "poringbom",
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "scripting"
     ],
-    "content_scripts": [
-        {
-          "matches": ["https://hoteldementia.io/novel*"],
-          "js": ["script.js"],
-          "run_at": "document_end"
-        }
-    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "Hotel de mentía Auto play"
+    },
     "manifest_version": 3
 }

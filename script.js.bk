@@ -1,0 +1,63 @@
+document.timer = 1;
+
+document.isNext = false;
+document.isPrev = false;
+
+document.getData = () => {
+    const times = document.getElementById("times").value;
+    const delay = document.getElementById("delay").value;
+    return {times, delay};
+}
+
+document.autoClick  = (clazz, times, delay=100, callback = () => {}) => {
+    var count = 1;
+    document.timer = setInterval(() => {
+        const el = document.getElementsByClassName(clazz)[0];
+        if (el) {
+            el.click();
+            console.log("click : " + clazz +" : "+ count);
+            callback.call();
+            if (count >= times) {
+                stopAutoClick();
+            }
+            count++;
+        }
+    }, delay);
+}
+
+document.setColor = (id, color) => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.style.backgroundColor = color;
+    }
+}
+
+document.autoNext = () => {
+    if (!document.isNext) {
+        document.setColor('next', '');
+        const  {times, delay} = getData();
+        autoClick("button-next", times, delay);
+        document.isNext = true;
+    } else {
+        document.setColor('next', '#0c030300');
+    }
+ }
+ 
+ document.autoPrev = () => {
+    if (!document.isPrev) {
+        document.setColor('prev', '');
+        const  {times, delay} = getData();
+        autoClick("button-previous", times, delay);
+        document.isPrev = true;
+    } else {
+        document.setColor('prev', '#0c030300');
+    }
+ }
+
+document.stopAutoClick = () => {
+    clearInterval(document.timer);
+    document.isNext = false;
+    document.isPrev = false;    
+    document.setColor('next', '#0c030300');
+    document.setColor('prev', '#0c030300');
+}
