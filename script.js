@@ -1,23 +1,26 @@
 const tools = "<div style='position: fixed;top: 0;right: 10%; opacity: 0.7;'>"
                  + "times <input value='1' width='10' id='times' type='number' style='width: 100px;height: 20px;text-align: center;'/> &nbsp;&nbsp;"
                  + "delay <input width='10' id='delay' value='100' type='number' style='width: 100px;height: 20px;text-align: center;'/>&nbsp;&nbsp;"
-                 +    "<button onClick='autoPrev()' style='scale: 0.9'>⏮️</button>"
-                 +    "<button onClick='stopAutoClick()' style='scale: 0.9'>⏹️</button>"
-                 +    "<button onClick='autoNext()' style='scale: 0.9'>⏭️</button>"
+                 +    "<button id='btn_prev' style='scale: 0.9'>⏮️</button>"
+                 +    "<button id='btn_stop' style='scale: 0.9'>⏹️</button>"
+                 +    "<button id='btn_next' style='scale: 0.9'>⏭️</button>"
               + "</div>";
 const div = document.createElement('div');
 div.innerHTML = tools;
 document.body.append(div);
+document.getElementById('btn_prev').onclick = autoPrev;
+document.getElementById('btn_stop').onclick = stopAutoClick;
+document.getElementById('btn_next').onclick = autoNext;
 
 var timer = undefined;
 function autoNext() {
    const  {times, delay} = getData();
-   autoClick(nextButton, times, delay);
+   autoClick('button-next', times, delay);
 }
 
 function autoPrev() {
    const  {times, delay} = getData();
-   autoClick(prevButton, times, delay);
+   autoClick('button-previous', times, delay);
 }
 
 function getData() {
